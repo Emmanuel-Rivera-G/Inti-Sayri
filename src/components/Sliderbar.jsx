@@ -1,60 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Sliderbar = () => {
+    const [isVisible, setIsVisible] = useState(false); 
+
+    const toggleSlider = () => {
+        setIsVisible(!isVisible);
+    };
+
+    const handleLinkClick = () => {
+        setIsVisible(false);  
+    };
+
     return (
-        <div className='h-[100vh] w-[270px] bg-[#08343F] rounded-r-[10px] z-50'>
-            <div className='h-[10vh] flex justify-center items-center text-[#F9E3D6] text-[30px] font-[800] tracking-[5px] py-2 sticky top-0 bg-[#08343F] rounded-tr-[10px]'>
-                <span>LOGO</span>
-            </div>
-            <div className='h-[90vh] pl-7 pt-6 overflow-y-auto'>
-                <div>
-                    <span className='text-gray-400 text-[15px] mb-3 block'>
-                        NAVEGACIÓN
-                    </span>
-                    <nav className='text-[#F9E3D6] text-[18px]'>
-                        <ul>
-                            <a href="#dashboard">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-tachometer-alt"></i><span>Dashboard</span>
-                                </li>
-                            </a>
-                            <a href="#mesas">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-chair"></i><span>Gestión de Mesas</span>
-                                </li>
-                            </a>
-                            <a href="#menu">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-utensils"></i><span>Menú</span>
-                                </li>
-                            </a>
-                            <a href="#pedidos">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-concierge-bell"></i><span>Pedidos</span>
-                                </li>
-                            </a>
-                            <a href="#pagos">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-cash-register"></i><span>Pagos</span>
-                                </li>
-                            </a>
-                            <a href="#empleados">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-users"></i><span>Empleados</span>
-                                </li>
-                            </a>
-                            <a href="#categorias">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-list"></i><span>Categorías</span>
-                                </li>
-                            </a>
-                            <a href="#usuarios">
-                                <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
-                                    <i className="fas fa-user-friends"></i><span>Usuarios</span>
-                                </li>
-                            </a>
-                        </ul>
-                    </nav>
+        <div className={`fixed ${!isVisible ? 'pointer-events-none' : ''} `}>
+            <div 
+                className={` fixed inset-0 bg-black bg-opacity-50 z-0 transition-opacity duration-300 ${!isVisible ? 'opacity-0 pointer-events-none ' : 'opacity-100'}`}
+                onClick={toggleSlider}
+            ></div>
+
+            <div 
+                className={`h-[100vh] w-[200px] relative  bg-azulOscuro z-50 rounded-br-[10px] transition-all duration-300 ${isVisible ? 'left-0 ' : '-left-[200px]'}`}
+            >
+                <div 
+                    className='absolute top-0 right-[-30px] bg-azulOscuro z-50 h-[40px] w-[35px] flex justify-center items-center rounded-br-[10px] cursor-pointer'
+                    onClick={toggleSlider}
+                >
+                    <i 
+                        className={`fa-solid fa-angle-up text-azulBlanco pointer-events-auto text-[20px] p-0 ml-[5px] rotate-90 ${isVisible ? 'rotate-90' : '-rotate-90'}`}
+                    ></i>
+                </div>
+
+                <div className='h-[8vh] flex justify-center items-center text-azulBlanco text-[25px] font-[800] tracking-[5px] py-2 sticky top-0 bg-azulOscuro rounded-tr-[10px]'>
+                    <span>LOGO</span>
+                </div>
+
+                <div className='h-[90vh] pl-6 pt-3 overflow-y-auto'>
+                    <div>
+                        <span className='text-azulClaro text-[14px] mb-3 block'>
+                            NAVEGACIÓN
+                        </span>
+                        <nav className='text-azulBlanco text-[14px]'>
+                            <ul>
+                                <Link to="/home" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-home"></i><span>Home</span>
+                                    </li>
+                                </Link>
+                                <Link to="/contactos-clave" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-address-book"></i><span>Contactos Clave</span>
+                                    </li>
+                                </Link>
+                                <Link to="/alerts" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-bell"></i><span>Alertas</span>
+                                    </li>
+                                </Link>
+                                <Link to="/chats" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-comment"></i><span>Chats</span>
+                                    </li>
+                                </Link>
+                                <Link to="/comunidades" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-users"></i><span>Comunidades</span>
+                                    </li>
+                                </Link>
+                                <Link to="/centros-de-ayuda" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-question-circle"></i><span>Centros de Ayuda</span>
+                                    </li>
+                                </Link>
+                                <Link to="/geolocalizacion" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-map-marker-alt"></i><span>Geolocalización</span>
+                                    </li>
+                                </Link>
+                                <Link to="/informacion-de-seguridad" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-shield-alt"></i><span>Información de Seguridad</span>
+                                    </li>
+                                </Link>
+                                <Link to="/tutorial" onClick={handleLinkClick}>
+                                    <li className='py-3 flex items-center gap-3 hover:text-[#fdf4ef] cursor-pointer'>
+                                        <i className="fas fa-chalkboard-teacher"></i><span>Tutorial</span>
+                                    </li>
+                                </Link>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
