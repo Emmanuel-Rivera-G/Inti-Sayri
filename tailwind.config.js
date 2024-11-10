@@ -13,6 +13,7 @@ export default {
         azulAcento: '#048ABF',   // Color azul acentuado
         verdeAzulado: '#038C8C', // Color verde azulado
         azulBlanco: '#EAF2FA',
+        verde: '#25D366',
       },
     },
   },

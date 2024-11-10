@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Header from '../components/Header';
+import ChatHeader from '../components/ChatHeader';  // Asegúrate de importar el nuevo Header
 import Sliderbar from './Sliderbar';
+import Header from './Header';
 
 const ChatUnico = ({ selectedChat, goBack }) => {
     const [messages, setMessages] = useState([
@@ -23,15 +24,14 @@ const ChatUnico = ({ selectedChat, goBack }) => {
 
     return (
         <div className="h-full flex flex-col">
-            <Header userName="Marlon" />
-            <Sliderbar/>
-            <main className=' flex-grow mt-[40px]'>
-                <div className="p-4 flex flex-col h-full bg-white ">
-                    <button onClick={goBack} className="text-blue-500 mb-4 flex">
-                        &larr; Volver
-                    </button>
+            <Header/>
+            {/* Nueva cabecera personalizada */}
+            <ChatHeader selectedChat={selectedChat} goBack={goBack} />
+            <Sliderbar />
+            <main className="flex-grow">
+                <div className="p-4 flex flex-col h-full bg-white">
                     <div className="flex-grow flex flex-col w-[100%] justify-between items-center ">
-                        <div className=" w-[100%] overflow-y-auto space-y-4 ">
+                        <div className="w-[100%] overflow-y-auto space-y-4">
                             {messages.map((message, index) => (
                                 <div
                                     key={index}
@@ -39,7 +39,7 @@ const ChatUnico = ({ selectedChat, goBack }) => {
                                 >
                                     <div
                                         className={`px-4 py-2 rounded-lg max-w-xs ${
-                                            message.user === 'Marlon' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'
+                                            message.user === 'Marlon' ? 'bg-verdeAzulado text-white' : 'bg-gray-300 text-black'
                                         }`}
                                     >
                                         {message.text}
@@ -59,7 +59,7 @@ const ChatUnico = ({ selectedChat, goBack }) => {
                             />
                             <button
                                 onClick={handleSendMessage}
-                                className="p-2 bg-blue-500 text-white rounded-r-lg"
+                                className="p-2 bg-verdeAzulado text-white rounded-r-lg"
                             >
                                 Enviar
                             </button>
@@ -67,8 +67,6 @@ const ChatUnico = ({ selectedChat, goBack }) => {
                     </div>
                 </div>
             </main>
-            
-            
         </div>
     );
 };

@@ -7,6 +7,9 @@ const Tutorial = () => {
         <div>
             <Header userName="Marlon"/>
             <Sliderbar/>
+            <main className='pt-[40px]'>
+                <img src="./tutorial.svg" alt="" />
+            </main>
         </div>
     )
 }
