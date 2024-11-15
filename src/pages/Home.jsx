@@ -81,7 +81,7 @@ const Home = () => {
 
     useEffect(() => {
         if (nombreUsuario) {
-            const newSocket = new WebSocket(`ws://inti-sayri-backend-latest.onrender.com/alerts?userId=${nombreUsuario}`);
+            const newSocket = new WebSocket(`wss://inti-sayri-backend-latest.onrender.com/alerts?userId=${nombreUsuario}`);
             setSocket(newSocket);
 
             newSocket.onopen = () => {
